@@ -1,10 +1,13 @@
 package com.yiban.erp.controller.util;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.stuxuhai.jpinyin.PinyinException;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.yiban.erp.dao.BillTradeLogMapper;
 import com.yiban.erp.entities.BillTradeLog;
+import com.yiban.erp.entities.TradeLog;
 import com.yiban.erp.exception.*;
 import com.yiban.erp.util.AESUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -49,9 +52,41 @@ public class UtilController {
      *
      * @return
      */
+//    @RequestMapping(value = "/tradelog", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<String> receiveTradeLog(@RequestBody String body) throws Exception {
+//        String result = AESUtil.decrypt(body);
+//        if (StringUtils.isNotEmpty(result)) {
+//            try {
+//                BillTradeLog billTradeLog = new BillTradeLog();
+//                billTradeLog.setBody(result);
+//                billTradeLog.setCreatedTime(new Date());
+//                billTradeLogMapper.insert(billTradeLog);
+//            } catch (Exception ex) {
+//                logger.error(ex.getMessage());
+//            }
+//
+//            JSONObject returnObj = new JSONObject();
+//            returnObj.put("responseMessage", "详情推送成功!");
+//            returnObj.put("responseCode", "000000");
+//
+//            JSONObject resultObj = new JSONObject();
+//            resultObj.put("response", returnObj);
+//            return ResponseEntity.ok().body(resultObj.toString());
+//        }
+//        return ResponseEntity.badRequest().build();
+//    }
+
     @RequestMapping(value = "/tradelog", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> receiveTradeLog(@RequestBody String body) throws Exception {
         String result = AESUtil.decrypt(body);
+
+        JSONObject text = (JSONObject)JSON.parse(result);
+        JSONObject data=(JSONObject)text.get("pushData");
+        JSONArray details = data.getJSONArray("invoiceHeads");
+        for(int i=0;i<details.size();i++){
+            TradeLog tradeLog = JSON.parseObject((String)details.get(i),TradeLog.class);
+        }
+
         if (StringUtils.isNotEmpty(result)) {
             try {
                 BillTradeLog billTradeLog = new BillTradeLog();
