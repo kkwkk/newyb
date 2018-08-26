@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.stuxuhai.jpinyin.PinyinException;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.yiban.erp.dao.BillTradeLogMapper;
+import com.yiban.erp.daoPA.paDataMapper;
 import com.yiban.erp.entities.BillTradeLog;
 import com.yiban.erp.entities.TradeLog;
 import com.yiban.erp.exception.*;
@@ -28,6 +29,9 @@ public class UtilController {
 
     @Autowired
     private BillTradeLogMapper billTradeLogMapper;
+
+    @Autowired
+    private paDataMapper paDataMapper;
     /**
      * 获取拼音缩写
      *
@@ -52,41 +56,9 @@ public class UtilController {
      *
      * @return
      */
-//    @RequestMapping(value = "/tradelog", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<String> receiveTradeLog(@RequestBody String body) throws Exception {
-//        String result = AESUtil.decrypt(body);
-//        if (StringUtils.isNotEmpty(result)) {
-//            try {
-//                BillTradeLog billTradeLog = new BillTradeLog();
-//                billTradeLog.setBody(result);
-//                billTradeLog.setCreatedTime(new Date());
-//                billTradeLogMapper.insert(billTradeLog);
-//            } catch (Exception ex) {
-//                logger.error(ex.getMessage());
-//            }
-//
-//            JSONObject returnObj = new JSONObject();
-//            returnObj.put("responseMessage", "详情推送成功!");
-//            returnObj.put("responseCode", "000000");
-//
-//            JSONObject resultObj = new JSONObject();
-//            resultObj.put("response", returnObj);
-//            return ResponseEntity.ok().body(resultObj.toString());
-//        }
-//        return ResponseEntity.badRequest().build();
-//    }
-
     @RequestMapping(value = "/tradelog", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> receiveTradeLog(@RequestBody String body) throws Exception {
         String result = AESUtil.decrypt(body);
-
-        JSONObject text = (JSONObject)JSON.parse(result);
-        JSONObject data=(JSONObject)text.get("pushData");
-        JSONArray details = data.getJSONArray("invoiceHeads");
-        for(int i=0;i<details.size();i++){
-            TradeLog tradeLog = JSON.parseObject((String)details.get(i),TradeLog.class);
-        }
-
         if (StringUtils.isNotEmpty(result)) {
             try {
                 BillTradeLog billTradeLog = new BillTradeLog();
@@ -108,6 +80,46 @@ public class UtilController {
         return ResponseEntity.badRequest().build();
     }
 
+//    @RequestMapping(value = "/tradelog", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//            public ResponseEntity<String> receiveTradeLog(@RequestBody String body) throws Exception {
+//                String result = AESUtil.decrypt(body);
+//
+//                try{
+//                    newTradeLog(result);
+//                }catch(Exception e){
+//                    logger.error(e.getMessage());
+//                }finally{
+//                    if (StringUtils.isNotEmpty(result)) {
+//                        try {
+//                            BillTradeLog billTradeLog = new BillTradeLog();
+//                            billTradeLog.setBody(result);
+//                            billTradeLog.setCreatedTime(new Date());
+//                            billTradeLogMapper.insert(billTradeLog);
+//                        } catch (Exception ex) {
+//                            logger.error(ex.getMessage());
+//                        }
+//
+//                        JSONObject returnObj = new JSONObject();
+//                        returnObj.put("responseMessage", "详情推送成功!");
+//                        returnObj.put("responseCode", "000000");
+//
+//                        JSONObject resultObj = new JSONObject();
+//                        resultObj.put("response", returnObj);
+//                        return ResponseEntity.ok().body(resultObj.toString());
+//                }
+//        }
+//        return ResponseEntity.badRequest().build();
+//    }
+
+    private void newTradeLog(String body){
+        JSONObject text = (JSONObject)JSON.parse(body);
+        JSONObject data=(JSONObject)text.get("pushData");
+        JSONArray details = data.getJSONArray("invoiceHeads");
+        for(int i=0;i<details.size();i++){
+            TradeLog tradeLogs = JSON.parseObject((String)details.get(i),TradeLog.class);
+            paDataMapper.insertData(tradeLogs);
+        }
+    }
     @RequestMapping(value = "/exception", method = RequestMethod.GET)
     public ResponseEntity<String> testException(@RequestParam("code") Integer code) throws Exception {
         logger.info("test exception handler code:", code);

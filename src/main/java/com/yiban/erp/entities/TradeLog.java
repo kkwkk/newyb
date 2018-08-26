@@ -5,76 +5,213 @@ import jdk.nashorn.internal.objects.annotations.Setter;
 
 
 public class TradeLog {
-    private String fpzl;
-    private String fpdm;
-    private String fphm;
-    private String kprq;
-    private String gfmc;
-    private String gfsh;
-    private String gfdzdh;
-    private String gfyhzh;
-    private String xfmc;
-    private String xfsh;
-    private String xfdzdh;
-    private String xfyhzh;
-    private String hjje;
-    private String hjse;
-    private String kpr;
-    private String fhr;
-    private String skr;
-    private String bz;
-    private String jym;
-    private String islist;
-    private String isvoid;
-    private String zfrq;
-    private String isdel;
-    private String corpid;
-    private String kpjh;
-    private String refno;
-    private String zyspmc;
-    private String jshj;
-    private String xfbz;
-    private String jmbbh;
-    private String spsm;
-    private String wkbz;
-    private String mw;
-    private String dybz;
-    private String bsbz;
-    private String djbz;
-    private String sl;
-    private String syhm;
-    private String bmbh;
-    private String xsdjbh;
-    private String skpbh;
-    private String name;
-    private String username;
-    private String zgswjgdm;
-    private String qyd;
-    private String fhrsbh;
-    private String shrsbh;
-    private String cd;
-    private String fdjhm;
-    private String zh;
-    private String hgzh;
-    private String cjhm;
-    private String xcrs;
-    private String yshwxx;
-    private String dw;
-    private String cpxh;
-    private String jzpzh;
-    private String scqymc;
-    private String fhrmc;
-    private String shrmc;
-    private String ssyf;
-    private String zgswjgmc;
-    private String zfr;
+    private String  bmbh;
+    private String  bsbz;
+    private String  bz;
+    private String  cd;
+    private String  channelcode;
+    private String  cjhm;
+    private String  corpid;
+    private String  cpxh;
+    private String  createdby;
+    private String  qsbp;
+    private String  datecreated;
+    private String  dateupdated;
+    private String  djbz;
+    private String  dw;
+    private String  dybz;
+    private String  fdjhm;
+    private String  fhr;
+    private String  fhrsbh;
+    private String  fpdm;
+    private String  fphm;
+    private String  fpzl;
+    private String  gfdzdh;
+    private String  gfmc;
+    private String  gfsh;
+    private String  gfyhzh;
+    private String  hgzh;
+    private String  hjje;
+    private String  hjse;
+    private String  isdel;
+    private String  islist;
+    private String  isvoid;
+    private String  jmbbh;
+    private String  jshj;
+    private String  jym;
+    private String  jzpzhm;
+    private String  kpjh;
+    private String  kpr;
+    private String  kprq;
+    private String  mw;
+    private String  name;
+    private String  qyd;
+    private String  scqymc;
+    private String  shrsbh;
+    private String  skpbh;
+    private String  skr;
+    private String  sl;
+    private String  source;
+    private String  client;
+    private String  spsm;
+    private String  syhm;
+    private String  updatedby;
+    private String  username;
+    private String  wkbz;
+    private String  xcrs;
+    private String  xfbz;
+    private String  xfdzdh;
+    private String  xfmc;
+    private String  xfsh;
+    private String  xfyhzh;
+    private String  xsdjbh;
+    private String  yshwxx;
+    private String  zgswjgdm;
+    private String  zh;
+    private String  zyspmc;
 
-    public String getFpzl() {
-        return fpzl;
+    public String getBmbh() {
+        return bmbh;
     }
 
-    public void setFpzl(String fpzl) {
-        this.fpzl = fpzl;
+    public void setBmbh(String bmbh) {
+        this.bmbh = bmbh;
+    }
+
+    public String getBsbz() {
+        return bsbz;
+    }
+
+    public void setBsbz(String bsbz) {
+        this.bsbz = bsbz;
+    }
+
+    public String getBz() {
+        return bz;
+    }
+
+    public void setBz(String bz) {
+        this.bz = bz;
+    }
+
+    public String getCd() {
+        return cd;
+    }
+
+    public void setCd(String cd) {
+        this.cd = cd;
+    }
+
+    public String getChannelcode() {
+        return channelcode;
+    }
+
+    public void setChannelcode(String channelcode) {
+        this.channelcode = channelcode;
+    }
+
+    public String getCjhm() {
+        return cjhm;
+    }
+
+    public void setCjhm(String cjhm) {
+        this.cjhm = cjhm;
+    }
+
+    public String getCorpid() {
+        return corpid;
+    }
+
+    public void setCorpid(String corpid) {
+        this.corpid = corpid;
+    }
+
+    public String getCpxh() {
+        return cpxh;
+    }
+
+    public void setCpxh(String cpxh) {
+        this.cpxh = cpxh;
+    }
+
+    public String getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(String createdby) {
+        this.createdby = createdby;
+    }
+
+    public String getQsbp() {
+        return qsbp;
+    }
+
+    public void setQsbp(String qsbp) {
+        this.qsbp = qsbp;
+    }
+
+    public String getDatecreated() {
+        return datecreated;
+    }
+
+    public void setDatecreated(String datecreated) {
+        this.datecreated = datecreated;
+    }
+
+    public String getDateupdated() {
+        return dateupdated;
+    }
+
+    public void setDateupdated(String dateupdated) {
+        this.dateupdated = dateupdated;
+    }
+
+    public String getDjbz() {
+        return djbz;
+    }
+
+    public void setDjbz(String djbz) {
+        this.djbz = djbz;
+    }
+
+    public String getDw() {
+        return dw;
+    }
+
+    public void setDw(String dw) {
+        this.dw = dw;
+    }
+
+    public String getDybz() {
+        return dybz;
+    }
+
+    public void setDybz(String dybz) {
+        this.dybz = dybz;
+    }
+
+    public String getFdjhm() {
+        return fdjhm;
+    }
+
+    public void setFdjhm(String fdjhm) {
+        this.fdjhm = fdjhm;
+    }
+
+    public String getFhr() {
+        return fhr;
+    }
+
+    public void setFhr(String fhr) {
+        this.fhr = fhr;
+    }
+
+    public String getFhrsbh() {
+        return fhrsbh;
+    }
+
+    public void setFhrsbh(String fhrsbh) {
+        this.fhrsbh = fhrsbh;
     }
 
     public String getFpdm() {
@@ -93,12 +230,20 @@ public class TradeLog {
         this.fphm = fphm;
     }
 
-    public String getKprq() {
-        return kprq;
+    public String getFpzl() {
+        return fpzl;
     }
 
-    public void setKprq(String kprq) {
-        this.kprq = kprq;
+    public void setFpzl(String fpzl) {
+        this.fpzl = fpzl;
+    }
+
+    public String getGfdzdh() {
+        return gfdzdh;
+    }
+
+    public void setGfdzdh(String gfdzdh) {
+        this.gfdzdh = gfdzdh;
     }
 
     public String getGfmc() {
@@ -117,14 +262,6 @@ public class TradeLog {
         this.gfsh = gfsh;
     }
 
-    public String getGfdzdh() {
-        return gfdzdh;
-    }
-
-    public void setGfdzdh(String gfdzdh) {
-        this.gfdzdh = gfdzdh;
-    }
-
     public String getGfyhzh() {
         return gfyhzh;
     }
@@ -133,36 +270,12 @@ public class TradeLog {
         this.gfyhzh = gfyhzh;
     }
 
-    public String getXfmc() {
-        return xfmc;
+    public String getHgzh() {
+        return hgzh;
     }
 
-    public void setXfmc(String xfmc) {
-        this.xfmc = xfmc;
-    }
-
-    public String getXfsh() {
-        return xfsh;
-    }
-
-    public void setXfsh(String xfsh) {
-        this.xfsh = xfsh;
-    }
-
-    public String getXfdzdh() {
-        return xfdzdh;
-    }
-
-    public void setXfdzdh(String xfdzdh) {
-        this.xfdzdh = xfdzdh;
-    }
-
-    public String getXfyhzh() {
-        return xfyhzh;
-    }
-
-    public void setXfyhzh(String xfyhzh) {
-        this.xfyhzh = xfyhzh;
+    public void setHgzh(String hgzh) {
+        this.hgzh = hgzh;
     }
 
     public String getHjje() {
@@ -181,44 +294,12 @@ public class TradeLog {
         this.hjse = hjse;
     }
 
-    public String getKpr() {
-        return kpr;
+    public String getIsdel() {
+        return isdel;
     }
 
-    public void setKpr(String kpr) {
-        this.kpr = kpr;
-    }
-
-    public String getFhr() {
-        return fhr;
-    }
-
-    public void setFhr(String fhr) {
-        this.fhr = fhr;
-    }
-
-    public String getSkr() {
-        return skr;
-    }
-
-    public void setSkr(String skr) {
-        this.skr = skr;
-    }
-
-    public String getBz() {
-        return bz;
-    }
-
-    public void setBz(String bz) {
-        this.bz = bz;
-    }
-
-    public String getJym() {
-        return jym;
-    }
-
-    public void setJym(String jym) {
-        this.jym = jym;
+    public void setIsdel(String isdel) {
+        this.isdel = isdel;
     }
 
     public String getIslist() {
@@ -237,52 +318,12 @@ public class TradeLog {
         this.isvoid = isvoid;
     }
 
-    public String getZfrq() {
-        return zfrq;
+    public String getJmbbh() {
+        return jmbbh;
     }
 
-    public void setZfrq(String zfrq) {
-        this.zfrq = zfrq;
-    }
-
-    public String getIsdel() {
-        return isdel;
-    }
-
-    public void setIsdel(String isdel) {
-        this.isdel = isdel;
-    }
-
-    public String getCorpid() {
-        return corpid;
-    }
-
-    public void setCorpid(String corpid) {
-        this.corpid = corpid;
-    }
-
-    public String getKpjh() {
-        return kpjh;
-    }
-
-    public void setKpjh(String kpjh) {
-        this.kpjh = kpjh;
-    }
-
-    public String getRefno() {
-        return refno;
-    }
-
-    public void setRefno(String refno) {
-        this.refno = refno;
-    }
-
-    public String getZyspmc() {
-        return zyspmc;
-    }
-
-    public void setZyspmc(String zyspmc) {
-        this.zyspmc = zyspmc;
+    public void setJmbbh(String jmbbh) {
+        this.jmbbh = jmbbh;
     }
 
     public String getJshj() {
@@ -293,36 +334,44 @@ public class TradeLog {
         this.jshj = jshj;
     }
 
-    public String getXfbz() {
-        return xfbz;
+    public String getJym() {
+        return jym;
     }
 
-    public void setXfbz(String xfbz) {
-        this.xfbz = xfbz;
+    public void setJym(String jym) {
+        this.jym = jym;
     }
 
-    public String getJmbbh() {
-        return jmbbh;
+    public String getJzpzhm() {
+        return jzpzhm;
     }
 
-    public void setJmbbh(String jmbbh) {
-        this.jmbbh = jmbbh;
+    public void setJzpzhm(String jzpzhm) {
+        this.jzpzhm = jzpzhm;
     }
 
-    public String getSpsm() {
-        return spsm;
+    public String getKpjh() {
+        return kpjh;
     }
 
-    public void setSpsm(String spsm) {
-        this.spsm = spsm;
+    public void setKpjh(String kpjh) {
+        this.kpjh = kpjh;
     }
 
-    public String getWkbz() {
-        return wkbz;
+    public String getKpr() {
+        return kpr;
     }
 
-    public void setWkbz(String wkbz) {
-        this.wkbz = wkbz;
+    public void setKpr(String kpr) {
+        this.kpr = kpr;
+    }
+
+    public String getKprq() {
+        return kprq;
+    }
+
+    public void setKprq(String kprq) {
+        this.kprq = kprq;
     }
 
     public String getMw() {
@@ -333,92 +382,12 @@ public class TradeLog {
         this.mw = mw;
     }
 
-    public String getDybz() {
-        return dybz;
-    }
-
-    public void setDybz(String dybz) {
-        this.dybz = dybz;
-    }
-
-    public String getBsbz() {
-        return bsbz;
-    }
-
-    public void setBsbz(String bsbz) {
-        this.bsbz = bsbz;
-    }
-
-    public String getDjbz() {
-        return djbz;
-    }
-
-    public void setDjbz(String djbz) {
-        this.djbz = djbz;
-    }
-
-    public String getSl() {
-        return sl;
-    }
-
-    public void setSl(String sl) {
-        this.sl = sl;
-    }
-
-    public String getSyhm() {
-        return syhm;
-    }
-
-    public void setSyhm(String syhm) {
-        this.syhm = syhm;
-    }
-
-    public String getBmbh() {
-        return bmbh;
-    }
-
-    public void setBmbh(String bmbh) {
-        this.bmbh = bmbh;
-    }
-
-    public String getXsdjbh() {
-        return xsdjbh;
-    }
-
-    public void setXsdjbh(String xsdjbh) {
-        this.xsdjbh = xsdjbh;
-    }
-
-    public String getSkpbh() {
-        return skpbh;
-    }
-
-    public void setSkpbh(String skpbh) {
-        this.skpbh = skpbh;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getZgswjgdm() {
-        return zgswjgdm;
-    }
-
-    public void setZgswjgdm(String zgswjgdm) {
-        this.zgswjgdm = zgswjgdm;
     }
 
     public String getQyd() {
@@ -429,12 +398,12 @@ public class TradeLog {
         this.qyd = qyd;
     }
 
-    public String getFhrsbh() {
-        return fhrsbh;
+    public String getScqymc() {
+        return scqymc;
     }
 
-    public void setFhrsbh(String fhrsbh) {
-        this.fhrsbh = fhrsbh;
+    public void setScqymc(String scqymc) {
+        this.scqymc = scqymc;
     }
 
     public String getShrsbh() {
@@ -445,44 +414,84 @@ public class TradeLog {
         this.shrsbh = shrsbh;
     }
 
-    public String getCd() {
-        return cd;
+    public String getSkpbh() {
+        return skpbh;
     }
 
-    public void setCd(String cd) {
-        this.cd = cd;
+    public void setSkpbh(String skpbh) {
+        this.skpbh = skpbh;
     }
 
-    public String getFdjhm() {
-        return fdjhm;
+    public String getSkr() {
+        return skr;
     }
 
-    public void setFdjhm(String fdjhm) {
-        this.fdjhm = fdjhm;
+    public void setSkr(String skr) {
+        this.skr = skr;
     }
 
-    public String getZh() {
-        return zh;
+    public String getSl() {
+        return sl;
     }
 
-    public void setZh(String zh) {
-        this.zh = zh;
+    public void setSl(String sl) {
+        this.sl = sl;
     }
 
-    public String getHgzh() {
-        return hgzh;
+    public String getSource() {
+        return source;
     }
 
-    public void setHgzh(String hgzh) {
-        this.hgzh = hgzh;
+    public void setSource(String source) {
+        this.source = source;
     }
 
-    public String getCjhm() {
-        return cjhm;
+    public String getClient() {
+        return client;
     }
 
-    public void setCjhm(String cjhm) {
-        this.cjhm = cjhm;
+    public void setClient(String client) {
+        this.client = client;
+    }
+
+    public String getSpsm() {
+        return spsm;
+    }
+
+    public void setSpsm(String spsm) {
+        this.spsm = spsm;
+    }
+
+    public String getSyhm() {
+        return syhm;
+    }
+
+    public void setSyhm(String syhm) {
+        this.syhm = syhm;
+    }
+
+    public String getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(String updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getWkbz() {
+        return wkbz;
+    }
+
+    public void setWkbz(String wkbz) {
+        this.wkbz = wkbz;
     }
 
     public String getXcrs() {
@@ -493,6 +502,54 @@ public class TradeLog {
         this.xcrs = xcrs;
     }
 
+    public String getXfbz() {
+        return xfbz;
+    }
+
+    public void setXfbz(String xfbz) {
+        this.xfbz = xfbz;
+    }
+
+    public String getXfdzdh() {
+        return xfdzdh;
+    }
+
+    public void setXfdzdh(String xfdzdh) {
+        this.xfdzdh = xfdzdh;
+    }
+
+    public String getXfmc() {
+        return xfmc;
+    }
+
+    public void setXfmc(String xfmc) {
+        this.xfmc = xfmc;
+    }
+
+    public String getXfsh() {
+        return xfsh;
+    }
+
+    public void setXfsh(String xfsh) {
+        this.xfsh = xfsh;
+    }
+
+    public String getXfyhzh() {
+        return xfyhzh;
+    }
+
+    public void setXfyhzh(String xfyhzh) {
+        this.xfyhzh = xfyhzh;
+    }
+
+    public String getXsdjbh() {
+        return xsdjbh;
+    }
+
+    public void setXsdjbh(String xsdjbh) {
+        this.xsdjbh = xsdjbh;
+    }
+
     public String getYshwxx() {
         return yshwxx;
     }
@@ -501,75 +558,27 @@ public class TradeLog {
         this.yshwxx = yshwxx;
     }
 
-    public String getDw() {
-        return dw;
+    public String getZgswjgdm() {
+        return zgswjgdm;
     }
 
-    public void setDw(String dw) {
-        this.dw = dw;
+    public void setZgswjgdm(String zgswjgdm) {
+        this.zgswjgdm = zgswjgdm;
     }
 
-    public String getCpxh() {
-        return cpxh;
+    public String getZh() {
+        return zh;
     }
 
-    public void setCpxh(String cpxh) {
-        this.cpxh = cpxh;
+    public void setZh(String zh) {
+        this.zh = zh;
     }
 
-    public String getJzpzh() {
-        return jzpzh;
+    public String getZyspmc() {
+        return zyspmc;
     }
 
-    public void setJzpzh(String jzpzh) {
-        this.jzpzh = jzpzh;
-    }
-
-    public String getScqymc() {
-        return scqymc;
-    }
-
-    public void setScqymc(String scqymc) {
-        this.scqymc = scqymc;
-    }
-
-    public String getFhrmc() {
-        return fhrmc;
-    }
-
-    public void setFhrmc(String fhrmc) {
-        this.fhrmc = fhrmc;
-    }
-
-    public String getShrmc() {
-        return shrmc;
-    }
-
-    public void setShrmc(String shrmc) {
-        this.shrmc = shrmc;
-    }
-
-    public String getSsyf() {
-        return ssyf;
-    }
-
-    public void setSsyf(String ssyf) {
-        this.ssyf = ssyf;
-    }
-
-    public String getZgswjgmc() {
-        return zgswjgmc;
-    }
-
-    public void setZgswjgmc(String zgswjgmc) {
-        this.zgswjgmc = zgswjgmc;
-    }
-
-    public String getZfr() {
-        return zfr;
-    }
-
-    public void setZfr(String zfr) {
-        this.zfr = zfr;
+    public void setZyspmc(String zyspmc) {
+        this.zyspmc = zyspmc;
     }
 }
