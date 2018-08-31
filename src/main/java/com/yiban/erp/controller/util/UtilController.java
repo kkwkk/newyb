@@ -8,7 +8,9 @@ import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.yiban.erp.dao.BillTradeLogMapper;
 import com.yiban.erp.daoPA.paDataMapper;
 import com.yiban.erp.entities.BillTradeLog;
-import com.yiban.erp.entities.TradeLog;
+import com.yiban.erp.entitiesPA.TradeDetail;
+import com.yiban.erp.entitiesPA.TradeHead;
+import com.yiban.erp.entitiesPA.TradeLog;
 import com.yiban.erp.exception.*;
 import com.yiban.erp.util.AESUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -17,10 +19,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 @RestController
 @RequestMapping("/util")
@@ -32,6 +41,9 @@ public class UtilController {
 
     @Autowired
     private paDataMapper paDataMapper;
+    //通过注解引入配置
+    @Resource(name = "defaultThreadPool")
+    private ThreadPoolTaskExecutor executor;
     /**
      * 获取拼音缩写
      *
@@ -82,7 +94,8 @@ public class UtilController {
 
     @RequestMapping(value = "/tradelog", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
             public ResponseEntity<String> receiveTradeLog(@RequestBody String body) throws Exception {
-                String result = AESUtil.decrypt(body);
+                //String result = AESUtil.decrypt(body);
+                String result = body.trim();
 
                 try{
                     if (StringUtils.isNotEmpty(result)){
@@ -114,14 +127,66 @@ public class UtilController {
         return ResponseEntity.badRequest().build();
     }
 
-    private void newTradeLog(String body){
-        JSONObject text = (JSONObject)JSON.parse(body);
-        JSONObject data=(JSONObject)text.get("pushData");
-        JSONArray details = data.getJSONArray("invoiceHeads");
-        for(int i=0;i<details.size();i++){
-            TradeLog tradeLogs = JSON.parseObject((String)details.get(i),TradeLog.class);
-            paDataMapper.insertData(tradeLogs);
+    @Transactional
+    @RequestMapping(value="/dealData",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> dealData() throws ExecutionException, InterruptedException {
+        int size = billTradeLogMapper.countNum();
+        logger.warn("size-----------------------"+size);
+        int zc = size/10000;
+        Long start = System.currentTimeMillis();
+        logger.warn("begin---------------"+start);
+        //使用Future方式执行多任务
+        //生成一个集合
+        List<Future> futures = new ArrayList<>();
+        List<String> billTradeLogs;
+        for(int i=0;i<=zc;i++){
+                billTradeLogs = billTradeLogMapper.selectAll(i*10000,10000);
+            for(int m=0;m<billTradeLogs.size();m++){
+                int finalM = m;
+                List<String> finalBillTradeLogs = billTradeLogs;
+                Future<?> future = executor.submit(() -> {
+                    newTradeLog(finalBillTradeLogs.get(finalM));
+                });
+                futures.add(future);
+           }
         }
+        logger.warn("end with-------------------"+(System.currentTimeMillis()-start));
+        return ResponseEntity.ok().build();
+    }
+
+    private void newTradeLog(String body){
+        String temp = body.replaceAll("\\\\","");
+        String data=temp.substring(1,temp.length()-1);
+        JSONObject text = (JSONObject)JSON.parse(data);
+        JSONObject content=(JSONObject)text.get("pushData");
+        JSONArray details = content.getJSONArray("invoiceDetails");
+        JSONArray heads = content.getJSONArray("invoiceHeads");
+
+        if(heads != null){
+            for(int i=0;i<heads.size();i++){
+                TradeHead tradeHead = JSON.parseObject(heads.getString(i),TradeHead.class);
+                tradeHead.setCreatedTime(new Date());
+                //logger.warn("insertHead--------------"+tradeHead.toString());
+                int j = paDataMapper.insertHead(tradeHead);
+                //logger.warn("result----------"+j);
+                tradeHead=null;
+            }
+        }
+        if(details!=null){
+            for(int i=0;i<details.size();i++){
+                TradeDetail tradeDetail = JSON.parseObject(details.getString(i),TradeDetail.class);
+                tradeDetail.setCreatedTime(new Date());
+                //logger.warn("insertDetail--------------");
+                paDataMapper.insertDetail(tradeDetail);
+                tradeDetail=null;
+            }
+        }
+        temp=null;
+        data=null;
+        text=null;
+        content=null;
+        details=null;
+        heads=null;
     }
     @RequestMapping(value = "/exception", method = RequestMethod.GET)
     public ResponseEntity<String> testException(@RequestParam("code") Integer code) throws Exception {

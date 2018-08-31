@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yiban.erp.daoPA.paDataMapper" >
 
-  <insert id="insertSelective" parameterType="com.yiban.erp.entities.TradeLog" useGeneratedKeys="true" keyProperty="id">
-    insert into banner
+    <insert id="insertHead" parameterType="com.yiban.erp.entitiesPA.TradeHead" useGeneratedKeys="true" keyProperty="id">
+    insert into pa_head
     <trim prefix="(" suffix=")" suffixOverrides="," >
 
       <if test="bmbh != null" >
@@ -32,9 +32,6 @@
       </if>
       <if test="createdby != null" >
         createdby,
-      </if>
-      <if test="qsbp != null" >
-        qsbp,
       </if>
       <if test="datecreated != null" >
         datecreated,
@@ -147,9 +144,6 @@
       <if test="source != null" >
         source,
     </if>
-      <if test="client != null" >
-        client,
-      </if>
       <if test="spsm != null" >
         spsm,
       </if>
@@ -198,200 +192,438 @@
       <if test="zyspmc != null" >
         zyspmc,
       </if>
+      <if test="fhrmc != null" >
+        fhrmc,
+      </if>
+      <if test="refno != null" >
+        refno,
+      </if>
+      <if test="shrmc != null" >
+        shrmc,
+      </if>
+      <if test="ssyf != null" >
+        ssyf,
+      </if>
+      <if test="zfr != null" >
+        zfr,
+      </if>
+      <if test="zfrq != null" >
+        zfrq,
+      </if>
+      <if test="zgswjgmc != null" >
+        zgswjgmc,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
 
       <if test="bmbh != null" >
-        #{bmbh,jdbcType=VARCHAR},
+        #{bmbh,jdbcType = VARCHAR},
       </if>
       <if test="bsbz != null" >
-        #{bsbz,jdbcType=VARCHAR},
+        #{bsbz,jdbcType = VARCHAR},
       </if>
       <if test="bz != null" >
-        #{bz,jdbcType=VARCHAR},
+        #{bz,jdbcType = VARCHAR},
       </if>
       <if test="cd != null" >
-        #{cd,jdbcType=VARCHAR},
+        #{cd,jdbcType = VARCHAR},
       </if>
       <if test="channelcode != null" >
-        #{channelcode,jdbcType=VARCHAR},
+        #{channelcode,jdbcType = VARCHAR},
       </if>
       <if test="cjhm != null" >
-        #{cjhm,jdbcType=VARCHAR},
+        #{cjhm,jdbcType = VARCHAR},
       </if>
       <if test="corpid != null" >
-        #{corpid,jdbcType=VARCHAR},
+        #{corpid,jdbcType = VARCHAR},
       </if>
       <if test="cpxh != null" >
-        #{cpxh,jdbcType=VARCHAR},
+        #{cpxh,jdbcType = VARCHAR},
       </if>
       <if test="createdby != null" >
-        #{createdby,jdbcType=VARCHAR},
-      </if>
-      <if test="qsbp != null" >
-        #{qsbp,jdbcType=VARCHAR},
+        #{createdby,jdbcType = VARCHAR},
       </if>
       <if test="datecreated != null" >
-        #{datecreated,jdbcType=VARCHAR},
+        #{datecreated,jdbcType = VARCHAR},
       </if>
       <if test="dateupdated != null" >
-        #{dateupdated,jdbcType=VARCHAR},
+        #{dateupdated,jdbcType = VARCHAR},
       </if>
       <if test="djbz != null" >
-        #{djbz,jdbcType=VARCHAR},
+        #{djbz,jdbcType = VARCHAR},
       </if>
       <if test="dw != null" >
-        #{dw,jdbcType=VARCHAR},
+        #{dw,jdbcType = VARCHAR},
       </if>
       <if test="dybz != null" >
-        #{dybz,jdbcType=VARCHAR},
+        #{dybz,jdbcType = VARCHAR},
       </if>
       <if test="fdjhm != null" >
-        #{fdjhm,jdbcType=VARCHAR},
+        #{fdjhm,jdbcType = VARCHAR},
       </if>
       <if test="fhr != null" >
-        #{fhr,jdbcType=VARCHAR},
+        #{fhr,jdbcType = VARCHAR},
       </if>
       <if test="fhrsbh != null" >
-        #{fhrsbh,jdbcType=VARCHAR},
+        #{fhrsbh,jdbcType = VARCHAR},
       </if>
       <if test="fpdm != null" >
-        #{fpdm,jdbcType=VARCHAR},
+        #{fpdm,jdbcType = VARCHAR},
       </if>
       <if test="fphm != null" >
-        #{fphm,jdbcType=VARCHAR},
+        #{fphm,jdbcType = VARCHAR},
       </if>
       <if test="fpzl != null" >
-        #{fpzl,jdbcType=VARCHAR},
+        #{fpzl,jdbcType = VARCHAR},
       </if>
       <if test="gfdzdh != null" >
-        #{gfdzdh,jdbcType=VARCHAR},
+        #{gfdzdh,jdbcType = VARCHAR},
       </if>
       <if test="gfmc != null" >
-        #{gfmc,jdbcType=VARCHAR},
+        #{gfmc,jdbcType = VARCHAR},
       </if>
       <if test="gfsh != null" >
-        #{gfsh,jdbcType=VARCHAR},
+        #{gfsh,jdbcType = VARCHAR},
       </if>
       <if test="gfyhzh != null" >
-        #{gfyhzh,jdbcType=VARCHAR},
+        #{gfyhzh,jdbcType = VARCHAR},
       </if>
       <if test="hgzh != null" >
-        #{hgzh,jdbcType=VARCHAR},
+        #{hgzh,jdbcType = VARCHAR},
       </if>
       <if test="hjje != null" >
-        #{hjje,jdbcType=VARCHAR},
+        #{hjje,jdbcType = VARCHAR},
       </if>
       <if test="hjse != null" >
-        #{hjse,jdbcType=VARCHAR},
+        #{hjse,jdbcType = VARCHAR},
       </if>
       <if test="isdel != null" >
-        #{isdel,jdbcType=VARCHAR},
+        #{isdel,jdbcType = VARCHAR},
       </if>
       <if test="islist != null" >
-        #{islist,jdbcType=VARCHAR},
+        #{islist,jdbcType = VARCHAR},
       </if>
       <if test="isvoid != null" >
-        #{isvoid,jdbcType=VARCHAR},
+        #{isvoid,jdbcType = VARCHAR},
       </if>
       <if test="jmbbh != null" >
-        #{jmbbh,jdbcType=VARCHAR},
+        #{jmbbh,jdbcType = VARCHAR},
       </if>
       <if test="jshj != null" >
-        #{jshj,jdbcType=VARCHAR},
+        #{jshj,jdbcType = VARCHAR},
       </if>
       <if test="jym != null" >
-        #{jym,jdbcType=VARCHAR},
+        #{jym,jdbcType = VARCHAR},
       </if>
       <if test="jzpzhm != null" >
-        #{jzpzhm,jdbcType=VARCHAR},
+        #{jzpzhm,jdbcType = VARCHAR},
       </if>
       <if test="kpjh != null" >
-        #{kpjh,jdbcType=VARCHAR},
+        #{kpjh,jdbcType = VARCHAR},
       </if>
       <if test="kpr != null" >
-        #{kpr,jdbcType=VARCHAR},
+        #{kpr,jdbcType = VARCHAR},
       </if>
       <if test="kprq != null" >
-        #{kprq,jdbcType=VARCHAR},
+        #{kprq,jdbcType = VARCHAR},
       </if>
       <if test="mw != null" >
-        #{mw,jdbcType=VARCHAR},
+        #{mw,jdbcType = VARCHAR},
       </if>
       <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+        #{name,jdbcType = VARCHAR},
       </if>
       <if test="qyd != null" >
-        #{qyd,jdbcType=VARCHAR},
+        #{qyd,jdbcType = VARCHAR},
       </if>
       <if test="scqymc != null" >
-        #{scqymc,jdbcType=VARCHAR},
+        #{scqymc,jdbcType = VARCHAR},
       </if>
       <if test="shrsbh != null" >
-        #{shrsbh,jdbcType=VARCHAR},
+        #{shrsbh,jdbcType = VARCHAR},
       </if>
       <if test="skpbh != null" >
-        #{skpbh,jdbcType=VARCHAR},
+        #{skpbh,jdbcType = VARCHAR},
       </if>
       <if test="skr != null" >
-        #{skr,jdbcType=VARCHAR},
+        #{skr,jdbcType = VARCHAR},
       </if>
       <if test="sl != null" >
-        #{sl,jdbcType=VARCHAR},
+        #{sl,jdbcType = VARCHAR},
       </if>
       <if test="source != null" >
-        #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="client != null" >
-        #{client,jdbcType=VARCHAR},
+        #{source,jdbcType = VARCHAR},
       </if>
       <if test="spsm != null" >
-        #{spsm,jdbcType=VARCHAR},
+        #{spsm,jdbcType = VARCHAR},
       </if>
       <if test="syhm != null" >
-        #{syhm,jdbcType=VARCHAR},
+        #{syhm,jdbcType = VARCHAR},
       </if>
       <if test="updatedby != null" >
-        #{updatedby,jdbcType=VARCHAR},
+        #{updatedby,jdbcType = VARCHAR},
       </if>
       <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
+        #{username,jdbcType = VARCHAR},
       </if>
       <if test="wkbz != null" >
-        #{wkbz,jdbcType=VARCHAR},
+        #{wkbz,jdbcType = VARCHAR},
       </if>
       <if test="xcrs != null" >
-        #{xcrs,jdbcType=VARCHAR},
+        #{xcrs,jdbcType = VARCHAR},
       </if>
       <if test="xfbz != null" >
-        #{xfbz,jdbcType=VARCHAR},
+        #{xfbz,jdbcType = VARCHAR},
       </if>
       <if test="xfdzdh != null" >
-        #{xfdzdh,jdbcType=VARCHAR},
+        #{xfdzdh,jdbcType = VARCHAR},
       </if>
       <if test="xfmc != null" >
-        #{xfmc,jdbcType=VARCHAR},
+        #{xfmc,jdbcType = VARCHAR},
       </if>
       <if test="xfsh != null" >
-        #{xfsh,jdbcType=VARCHAR},
+        #{xfsh,jdbcType = VARCHAR},
       </if>
       <if test="xfyhzh != null" >
-        #{xfyhzh,jdbcType=VARCHAR},
+        #{xfyhzh,jdbcType = VARCHAR},
       </if>
       <if test="xsdjbh != null" >
-        #{xsdjbh,jdbcType=VARCHAR},
+        #{xsdjbh,jdbcType = VARCHAR},
       </if>
       <if test="yshwxx != null" >
-        #{yshwxx,jdbcType=VARCHAR},
+        #{yshwxx,jdbcType = VARCHAR},
       </if>
       <if test="zgswjgdm != null" >
-        #{zgswjgdm,jdbcType=VARCHAR},
+        #{zgswjgdm,jdbcType = VARCHAR},
       </if>
       <if test="zh != null" >
-        #{zh,jdbcType=VARCHAR},
+        #{zh,jdbcType = VARCHAR},
       </if>
       <if test="zyspmc != null" >
-        #{zyspmc,jdbcType=VARCHAR},
+        #{zyspmc,jdbcType = VARCHAR},
+      </if>
+      <if test="fhrmc != null" >
+        #{fhrmc,jdbcType = VARCHAR},
+      </if>
+      <if test="refno != null" >
+        #{refno,jdbcType = VARCHAR},
+      </if>
+      <if test="shrmc != null" >
+        #{shrmc,jdbcType = VARCHAR},
+      </if>
+      <if test="ssyf != null" >
+        #{ssyf,jdbcType = VARCHAR},
+      </if>
+      <if test="zfr != null" >
+        #{zfr,jdbcType = VARCHAR},
+      </if>
+      <if test="zfrq != null" >
+        #{zfrq,jdbcType = VARCHAR},
+      </if>
+      <if test="zgswjgmc != null" >
+        #{zgswjgmc,jdbcType = VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+  <insert id="insertDetail" parameterType="com.yiban.erp.entitiesPA.TradeDetail" useGeneratedKeys="true" keyProperty="id">
+    insert into pa_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      <if test="bhsdj != null" >
+        bhsdj,
+      </if>
+      <if test="channelcode != null" >
+        channelcode,
+      </if>
+      <if test="corpid != null" >
+        corpid,
+      </if>
+      <if test="cpdm != null" >
+        cpdm,
+      </if>
+      <if test="createdby != null" >
+        createdby,
+      </if>
+      <if test="datecreated != null" >
+        datecreated,
+      </if>
+      <if test="dateupdated != null" >
+        dateupdated,
+      </if>
+      <if test="fpdm != null" >
+        fpdm,
+      </if>
+      <if test="fphm != null" >
+        fphm,
+      </if>
+      <if test="fphxz != null" >
+        fphxz,
+      </if>
+      <if test="fpzl != null" >
+        fpzl,
+      </if>
+      <if test="ggxh != null" >
+        ggxh,
+      </if>
+      <if test="hsbz != null" >
+        hsbz,
+      </if>
+      <if test="hsdj != null" >
+        hsdj,
+      </if>
+      <if test="hsje != null" >
+        hsje,
+      </if>
+      <if test="isdel != null" >
+        isdel,
+      </if>
+      <if test="je != null" >
+        je,
+      </if>
+      <if test="jldw != null" >
+        jldw,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="qdbz != null" >
+        qdbz,
+      </if>
+      <if test="se != null" >
+        se,
+      </if>
+      <if test="sl != null" >
+        sl,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="spmc != null" >
+        spmc,
+      </if>
+      <if test="spsl != null" >
+        spsl,
+      </if>
+      <if test="spsm != null" >
+        spsm,
+      </if>
+      <if test="updatedby != null" >
+        updatedby,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="xh != null" >
+        xh,
+      </if>
+      <if test="xsdjbh != null" >
+        xsdjbh,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bhsdj != null" >
+        #{bhsdj,jdbcType = VARCHAR},
+      </if>
+      <if test="channelcode != null" >
+        #{channelcode,jdbcType = VARCHAR},
+      </if>
+      <if test="corpid != null" >
+        #{corpid,jdbcType = VARCHAR},
+      </if>
+      <if test="cpdm != null" >
+        #{cpdm,jdbcType = VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType = VARCHAR},
+      </if>
+      <if test="datecreated != null" >
+        #{datecreated,jdbcType = VARCHAR},
+      </if>
+      <if test="dateupdated != null" >
+        #{dateupdated,jdbcType = VARCHAR},
+      </if>
+      <if test="fpdm != null" >
+        #{fpdm,jdbcType = VARCHAR},
+      </if>
+      <if test="fphm != null" >
+        #{fphm,jdbcType = VARCHAR},
+      </if>
+      <if test="fphxz != null" >
+        #{fphxz,jdbcType = VARCHAR},
+      </if>
+      <if test="fpzl != null" >
+        #{fpzl,jdbcType = VARCHAR},
+      </if>
+      <if test="ggxh != null" >
+        #{ggxh,jdbcType = VARCHAR},
+      </if>
+      <if test="hsbz != null" >
+        #{hsbz,jdbcType = VARCHAR},
+      </if>
+      <if test="hsdj != null" >
+        #{hsdj,jdbcType = VARCHAR},
+      </if>
+      <if test="hsje != null" >
+        #{hsje,jdbcType = VARCHAR},
+      </if>
+      <if test="isdel != null" >
+        #{isdel,jdbcType = VARCHAR},
+      </if>
+      <if test="je != null" >
+        #{je,jdbcType = VARCHAR},
+      </if>
+      <if test="jldw != null" >
+        #{jldw,jdbcType = VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType = VARCHAR},
+      </if>
+      <if test="qdbz != null" >
+        #{qdbz,jdbcType = VARCHAR},
+      </if>
+      <if test="se != null" >
+        #{se,jdbcType = VARCHAR},
+      </if>
+      <if test="sl != null" >
+        #{sl,jdbcType = VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType = VARCHAR},
+      </if>
+      <if test="spmc != null" >
+        #{spmc,jdbcType = VARCHAR},
+      </if>
+      <if test="spsl != null" >
+        #{spsl,jdbcType = VARCHAR},
+      </if>
+      <if test="spsm != null" >
+        #{spsm,jdbcType = VARCHAR},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType = VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType = VARCHAR},
+      </if>
+      <if test="xh != null" >
+        #{xh,jdbcType = VARCHAR},
+      </if>
+      <if test="xsdjbh != null" >
+        #{xsdjbh,jdbcType = VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>

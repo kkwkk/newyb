@@ -1,7 +1,4 @@
-package com.yiban.erp.entities;
-
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
+package com.yiban.erp.entitiesPA;
 
 
 public class TradeLog {
@@ -14,7 +11,6 @@ public class TradeLog {
     private String  corpid;
     private String  cpxh;
     private String  createdby;
-    private String  qsbp;
     private String  datecreated;
     private String  dateupdated;
     private String  djbz;
@@ -52,7 +48,6 @@ public class TradeLog {
     private String  skr;
     private String  sl;
     private String  source;
-    private String  client;
     private String  spsm;
     private String  syhm;
     private String  updatedby;
@@ -69,6 +64,13 @@ public class TradeLog {
     private String  zgswjgdm;
     private String  zh;
     private String  zyspmc;
+    private String  fhrmc;
+    private String  refno;
+    private String  shrmc;
+    private String  ssyf;
+    private String  zfr;
+    private String  zfrq;
+    private String  zgswjgmc;
 
     public String getBmbh() {
         return bmbh;
@@ -140,14 +142,6 @@ public class TradeLog {
 
     public void setCreatedby(String createdby) {
         this.createdby = createdby;
-    }
-
-    public String getQsbp() {
-        return qsbp;
-    }
-
-    public void setQsbp(String qsbp) {
-        this.qsbp = qsbp;
     }
 
     public String getDatecreated() {
@@ -446,14 +440,6 @@ public class TradeLog {
         this.source = source;
     }
 
-    public String getClient() {
-        return client;
-    }
-
-    public void setClient(String client) {
-        this.client = client;
-    }
-
     public String getSpsm() {
         return spsm;
     }
@@ -580,5 +566,61 @@ public class TradeLog {
 
     public void setZyspmc(String zyspmc) {
         this.zyspmc = zyspmc;
+    }
+
+    public String getFhrmc() {
+        return fhrmc;
+    }
+
+    public void setFhrmc(String fhrmc) {
+        this.fhrmc = fhrmc;
+    }
+
+    public String getRefno() {
+        return refno;
+    }
+
+    public void setRefno(String refno) {
+        this.refno = refno;
+    }
+
+    public String getShrmc() {
+        return shrmc;
+    }
+
+    public void setShrmc(String shrmc) {
+        this.shrmc = shrmc;
+    }
+
+    public String getSsyf() {
+        return ssyf;
+    }
+
+    public void setSsyf(String ssyf) {
+        this.ssyf = ssyf;
+    }
+
+    public String getZfr() {
+        return zfr;
+    }
+
+    public void setZfr(String zfr) {
+        this.zfr = zfr;
+    }
+
+    public String getZfrq() {
+        return zfrq;
+    }
+
+    public void setZfrq(String zfrq) {
+        this.zfrq = zfrq;
+    }
+
+    public String getZgswjgmc() {
+        return zgswjgmc;
+    }
+
+    public void setZgswjgmc(String zgswjgmc) {
+        this.zgswjgmc = zgswjgmc;
     }
 }
