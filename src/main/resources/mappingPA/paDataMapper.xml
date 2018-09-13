@@ -627,5 +627,119 @@
       </if>
     </trim>
   </insert>
+  <select id="allComp" resultType="com.yiban.erp.entitiesPA.compInfo">
+    select xfmc as corpName, sum(hjje) as saleTotal
+    from pa_head
+    where
+     DATE_SUB(CURDATE(), INTERVAL 1 YEAR) &lt;= date(kprq) and isvoid = false
+    group by xfmc
+  </select>
+  <select id="getSellTotal" resultType="java.lang.Long">
+    select sum(hjje) as saleTotal
+    from pa_head
+    where
+     xfmc = #{cropName} and DATE_SUB(CURDATE(), INTERVAL 1 YEAR) &lt;= date(kprq) and isvoid = false
+  </select>
 
+  <select id="topConsumer" resultType="com.yiban.erp.entitiesPA.topConsumer">
+    select sum(hjje) hj,gfmc
+    from pa_head
+    where
+    xfmc =#{xfmc} and DATE_SUB(CURDATE(), INTERVAL 1 YEAR) &lt;= date(kprq) and isvoid = false
+    group by gfmc
+    order by hj desc
+    limit 0,3
+  </select>
+  <select id="selectComp" resultType="java.lang.Integer">
+    select count(*)
+    from company_info
+    where corp_name = #{corpName}
+  </select>
+
+  <insert id="insertComps" useGeneratedKeys="true"
+          keyProperty="id" parameterType="com.yiban.erp.entitiesPA.compInfo">
+    insert into company_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+    <if test="corpName != null" >
+      corp_name,
+    </if>
+    <if test="saleTotal != null" >
+      sale_total,
+    </if>
+    <if test="top3Name1 != null" >
+      top3_name1,
+    </if>
+    <if test="top3Debtnum1 != null" >
+      top3_debtnum1,
+    </if>
+    <if test="top3Name2 != null" >
+      top3_name2,
+    </if>
+    <if test="top3Debtnum2 != null" >
+      top3_debtnum2,
+    </if>
+    <if test="top3Name3 != null" >
+      top3_name3,
+    </if>
+    <if test="top3Debtnum3 != null" >
+      top3_debtnum3,
+    </if>
+    created_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    <if test="corpName != null" >
+      #{corpName},
+    </if>
+    <if test="saleTotal != null" >
+      #{saleTotal},
+    </if>
+    <if test="top3Name1 != null" >
+      #{top3Name1},
+    </if>
+    <if test="top3Debtnum1 != null" >
+      #{top3Debtnum1},
+    </if>
+    <if test="top3Name2 != null" >
+      #{top3Name2},
+    </if>
+    <if test="top3Debtnum2 != null" >
+      #{top3Debtnum2},
+    </if>
+    <if test="top3Name3 != null" >
+      #{top3Name3},
+    </if>
+    <if test="top3Debtnum3 != null" >
+      #{top3Debtnum3},
+    </if>
+     now()
+    </trim>
+  </insert>
+
+  <update id="updComp" parameterType="com.yiban.erp.entitiesPA.compInfo">
+    update  company_info
+    <set >
+      <if test="saleTotal != null">
+        sale_total = #{saleTotal},
+      </if>
+      <if test="top3Name1 != null" >
+        top3_name1 = #{top3Name1},
+      </if>
+      <if test="top3Debtnum1 != null" >
+        top3_debtnum1 = #{top3Debtnum1},
+      </if>
+      <if test="top3Name2 != null" >
+        top3_name2 = #{top3Name2},
+      </if>
+      <if test="top3Debtnum2 != null" >
+        top3_debtnum2 = #{top3Debtnum2},
+    </if>
+      <if test="top3Name3 != null" >
+        top3_name3 = #{top3Name3},
+      </if>
+      <if test="top3Debtnum3 != null" >
+        top3_debtnum3 = #{top3Debtnum3},
+      </if>
+    </set>
+    where corp_name = #{corpName}
+  </update>
 </mapper>

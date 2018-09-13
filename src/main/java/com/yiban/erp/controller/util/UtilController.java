@@ -8,9 +8,7 @@ import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.yiban.erp.dao.BillTradeLogMapper;
 import com.yiban.erp.daoPA.paDataMapper;
 import com.yiban.erp.entities.BillTradeLog;
-import com.yiban.erp.entitiesPA.TradeDetail;
-import com.yiban.erp.entitiesPA.TradeHead;
-import com.yiban.erp.entitiesPA.TradeLog;
+import com.yiban.erp.entitiesPA.*;
 import com.yiban.erp.exception.*;
 import com.yiban.erp.util.AESUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -94,9 +92,8 @@ public class UtilController {
 
     @RequestMapping(value = "/tradelog", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
             public ResponseEntity<String> receiveTradeLog(@RequestBody String body) throws Exception {
-                //String result = AESUtil.decrypt(body);
-                String result = body.trim();
 
+                String result = AESUtil.decrypt(body);
                 try{
                     if (StringUtils.isNotEmpty(result)){
                         newTradeLog(result);
@@ -127,6 +124,13 @@ public class UtilController {
         return ResponseEntity.badRequest().build();
     }
 
+    /**
+     * 将trade_log表数据插入pa_head和pa_detail
+     * @return
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
+
     @Transactional
     @RequestMapping(value="/dealData",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> dealData() throws ExecutionException, InterruptedException {
@@ -146,7 +150,7 @@ public class UtilController {
                 List<String> finalBillTradeLogs = billTradeLogs;
                 Future<?> future = executor.submit(() -> {
                     newTradeLog(finalBillTradeLogs.get(finalM));
-                });
+               });
                 futures.add(future);
            }
         }
@@ -154,8 +158,40 @@ public class UtilController {
         return ResponseEntity.ok().build();
     }
 
-    private void newTradeLog(String body){
-        String temp = body.replaceAll("\\\\","");
+    /**
+     * 提取pa_head表中的所有公司前三客户和近一年销售额并插入company_info
+     * @return
+     */
+    @Transactional
+    @RequestMapping(value="/dealData2",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> dealData2(){
+       List<compInfo> comps = paDataMapper.allComp();
+
+       for(int i=0;i<comps.size();i++){
+           List<topConsumer> tops = paDataMapper.topConsumer(comps.get(i).getCorpName());
+           if(tops.size()>=1){
+               comps.get(i).setTop3Name1(tops.get(0).getGfmc());
+               comps.get(i).setTop3Debtnum1(tops.get(0).getHj());
+           }
+           if(tops.size()>=2){
+               comps.get(i).setTop3Name2(tops.get(1).getGfmc());
+               comps.get(i).setTop3Debtnum2(tops.get(1).getHj());
+           }
+
+           if(tops.size()>=3){
+               comps.get(i).setTop3Name3(tops.get(2).getGfmc());
+               comps.get(i).setTop3Debtnum3(tops.get(2).getHj());
+           }
+       }
+        logger.warn("--------"+comps.size());
+       for(int i=0;i<comps.size();i++){
+           paDataMapper.insertComps(comps.get(i));
+       }
+       return ResponseEntity.ok().build();
+    }
+
+    private  void newTradeLog(String body){
+        String  temp = body.replaceAll("\\\\","");
         String data=temp.substring(1,temp.length()-1);
         JSONObject text = (JSONObject)JSON.parse(data);
         JSONObject content=(JSONObject)text.get("pushData");
@@ -168,7 +204,32 @@ public class UtilController {
                 tradeHead.setCreatedTime(new Date());
                 //logger.warn("insertHead--------------"+tradeHead.toString());
                 int j = paDataMapper.insertHead(tradeHead);
-                //logger.warn("result----------"+j);
+                String cropName =tradeHead.getXfmc();
+                /**提取前三客户及年销售额*/
+                compInfo compInfo = new compInfo();
+
+                compInfo.setCorpName(cropName);
+                compInfo.setSaleTotal(paDataMapper.getSellTotal(cropName));
+
+                List<topConsumer> tops = paDataMapper.topConsumer(cropName);
+                if(tops.size()>=1){
+                    compInfo.setTop3Name1(tops.get(0).getGfmc());
+                    compInfo.setTop3Debtnum1(tops.get(0).getHj());
+                }
+                if(tops.size()>=2){
+                    compInfo.setTop3Name2(tops.get(1).getGfmc());
+                    compInfo.setTop3Debtnum2(tops.get(1).getHj());
+                }
+                if(tops.size()>=3){
+                    compInfo.setTop3Name3(tops.get(2).getGfmc());
+                    compInfo.setTop3Debtnum3(tops.get(2).getHj());
+                }
+                if(paDataMapper.selectComp(cropName)<0){
+                    paDataMapper.insertComps(compInfo);
+                }else{
+                    paDataMapper.updComp(compInfo);
+                }
+                compInfo=null;
                 tradeHead=null;
             }
         }
