@@ -275,11 +275,14 @@ public class TradeHead {
     }
 
     public String getHjje() {
+
         return hjje;
     }
 
     public void setHjje(String hjje) {
-        this.hjje = hjje;
+
+        this.hjje = "true".equals(isvoid) ? "-"+hjje : hjje;
+
     }
 
     public String getHjse() {
@@ -287,7 +290,7 @@ public class TradeHead {
     }
 
     public void setHjse(String hjse) {
-        this.hjse = hjse;
+        this.hjse = "true".equals(isvoid) ? "-"+hjse : hjse;
     }
 
     public String getIsdel() {
@@ -327,7 +330,8 @@ public class TradeHead {
     }
 
     public void setJshj(String jshj) {
-        this.jshj = jshj;
+
+        this.jshj = "true".equals(isvoid) ? "-"+jshj : jshj;
     }
 
     public String getJym() {

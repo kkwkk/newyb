@@ -39,7 +39,7 @@
   <insert id="insert" parameterType="com.yiban.erp.entities.BillTradeLog" useGeneratedKeys="true" keyProperty="id">
     insert into trade_log (created_time, body
       )
-    values (#{createdTime,jdbcType=TIMESTAMP}, #{body,jdbcType=LONGVARCHAR}
+    values (now(), #{body,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.yiban.erp.entities.BillTradeLog" useGeneratedKeys="true" keyProperty="id">

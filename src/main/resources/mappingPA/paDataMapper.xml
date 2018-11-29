@@ -196,7 +196,7 @@
         fhrmc,
       </if>
       <if test="refno != null" >
-        refno,
+        refno,insertDetail
       </if>
       <if test="shrmc != null" >
         shrmc,
@@ -213,9 +213,7 @@
       <if test="zgswjgmc != null" >
         zgswjgmc,
       </if>
-      <if test="createdTime != null" >
-        created_time,
-      </if>
+        created_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
 
@@ -426,9 +424,7 @@
       <if test="zgswjgmc != null" >
         #{zgswjgmc,jdbcType = VARCHAR},
       </if>
-      <if test="createdTime != null" >
-        #{createdTime,jdbcType=TIMESTAMP},
-      </if>
+      now()
     </trim>
   </insert>
 
@@ -527,9 +523,7 @@
       <if test="xsdjbh != null" >
         xsdjbh,
       </if>
-      <if test="createdTime != null" >
-        created_time,
-      </if>
+        created_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="bhsdj != null" >
@@ -622,9 +616,7 @@
       <if test="xsdjbh != null" >
         #{xsdjbh,jdbcType = VARCHAR},
       </if>
-      <if test="createdTime != null" >
-        #{createdTime,jdbcType=TIMESTAMP},
-      </if>
+        now()
     </trim>
   </insert>
   <select id="allComp" resultType="com.yiban.erp.entitiesPA.compInfo">

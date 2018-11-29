@@ -93,8 +93,9 @@ public class UtilController {
     @RequestMapping(value = "/tradelog", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
             public ResponseEntity<String> receiveTradeLog(@RequestBody String body) throws Exception {
 
-                String result = AESUtil.decrypt(body);
-                try{
+        String result = AESUtil.decrypt(body);
+        //String result =body;
+        try{
                     if (StringUtils.isNotEmpty(result)){
                         newTradeLog(result);
                     }
@@ -107,7 +108,7 @@ public class UtilController {
                             BillTradeLog billTradeLog = new BillTradeLog();
                             billTradeLog.setBody(result);
                             billTradeLog.setCreatedTime(new Date());
-                            billTradeLogMapper.insert(billTradeLog);
+                           billTradeLogMapper.insert(billTradeLog);
                         } catch (Exception ex) {
                             logger.error(ex.getMessage());
                         }
@@ -201,7 +202,7 @@ public class UtilController {
         if(heads != null){
             for(int i=0;i<heads.size();i++){
                 TradeHead tradeHead = JSON.parseObject(heads.getString(i),TradeHead.class);
-                tradeHead.setCreatedTime(new Date());
+                //tradeHead.setCreatedTime(new Date());
                 //logger.warn("insertHead--------------"+tradeHead.toString());
                 int j = paDataMapper.insertHead(tradeHead);
                 String cropName =tradeHead.getXfmc();
@@ -224,14 +225,14 @@ public class UtilController {
                     compInfo.setTop3Name3(tops.get(2).getGfmc());
                     compInfo.setTop3Debtnum3(tops.get(2).getHj());
                 }
-                if(paDataMapper.selectComp(cropName)<0){
+                if(paDataMapper.selectComp(cropName)<=0){
                     paDataMapper.insertComps(compInfo);
                 }else{
                     paDataMapper.updComp(compInfo);
                 }
                 compInfo=null;
                 tradeHead=null;
-            }
+           }
         }
         if(details!=null){
             for(int i=0;i<details.size();i++){
